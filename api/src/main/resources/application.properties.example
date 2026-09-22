@@ -1,0 +1,12 @@
+spring.application.name=api
+
+
+# Configura a porta da aplicação
+server.port=8888
+
+
+# Desabilita (por enquanto) o acesso a banco de dados
+spring.autoconfigure.exclude=org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+
+
+spring.mongodb.uri=
