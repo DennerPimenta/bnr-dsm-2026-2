@@ -16,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import br.edu.fatecfranca.api.models.Aluno;
 import br.edu.fatecfranca.api.models.Curso;
-import br.edu.fatecfranca.api.services.AlunoService;
 import br.edu.fatecfranca.api.services.CursoService;
+
 
 
 @RestController
