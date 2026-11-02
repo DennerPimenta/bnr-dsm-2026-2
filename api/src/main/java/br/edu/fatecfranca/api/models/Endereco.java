@@ -1,14 +1,20 @@
 
 package br.edu.fatecfranca.api.models;
 
+import jakarta.validation.constraints.NotBlank;
 
 public class Endereco {
 
-
+@NotBlank(message = "O logradouro é obrigatório.")
    private String logradouro;
+@NotBlank(message = "O numero é obrigatório.")   
    private String numero;
+
+@NotBlank(message = "O municipio é obrigatório.")      
    private String municipio;
+ @NotBlank(message = "A UF é obrigatória.")
    private String uf;
+ @NotBlank(message = "A cep é obrigatória.")
    private String cep;
 
 
@@ -16,12 +22,7 @@ public class Endereco {
    }
 
 
-   public Endereco(
-           String logradouro,
-           String numero,
-           String municipio,
-           String uf,
-           String cep) {
+   public Endereco(String logradouro, String numero, String municipio, String uf, String cep) {
        this.logradouro = logradouro;
        this.numero = numero;
        this.municipio = municipio;
@@ -78,6 +79,9 @@ public class Endereco {
    public void setCep(String cep) {
     this.cep = cep;
    }
+
+
+   
 
 
    //*

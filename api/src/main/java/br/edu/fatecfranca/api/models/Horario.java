@@ -1,26 +1,48 @@
 package br.edu.fatecfranca.api.models;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Horario {
 
-   private String diaSemana;
-   private String inicio;
-   private String fim;
+    @NotBlank(message = "O dia da semana é obrigatório.")
+    private String diaSemana;
 
-   public Horario() {
-   }
+    @NotBlank(message = "O horário de início é obrigatório.")
+    private String inicio;
 
-   public Horario(String diaSemana, String inicio, String fim) {
-       this.diaSemana = diaSemana;
-       this.inicio = inicio;
-       this.fim = fim;
-   }
+    @NotBlank(message = "O horário de fim é obrigatório.")
+    private String fim;
 
-   public String getDiaSemana() { return diaSemana; }
-   public void setDiaSemana(String diaSemana) { this.diaSemana = diaSemana; }
+    public Horario() {
+    }
 
-   public String getInicio() { return inicio; }
-   public void setInicio(String inicio) { this.inicio = inicio; }
+    public Horario(String diaSemana, String inicio, String fim) {
+        this.diaSemana = diaSemana;
+        this.inicio = inicio;
+        this.fim = fim;
+    }
 
-   public String getFim() { return fim; }
-   public void setFim(String fim) { this.fim = fim; }
+    public String getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(String diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
+    public String getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(String inicio) {
+        this.inicio = inicio;
+    }
+
+    public String getFim() {
+        return fim;
+    }
+
+    public void setFim(String fim) {
+        this.fim = fim;
+    }
 }

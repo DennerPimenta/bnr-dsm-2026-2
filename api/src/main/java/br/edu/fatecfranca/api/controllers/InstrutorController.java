@@ -15,63 +15,64 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.fatecfranca.api.models.Instrutor;
 import br.edu.fatecfranca.api.services.InstrutorService;
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("instrutores")
+@RequestMapping("/instrutores")
 public class InstrutorController {
 
-   private final InstrutorService service;
+    private final InstrutorService service;
 
-   public InstrutorController(InstrutorService service) {
-       this.service = service;
-   }
+    public InstrutorController(InstrutorService service) {
+        this.service = service;
+    }
 
-   @GetMapping
-   public List<Instrutor> listarTodos() {
-       return service.listarTodos();
-   }
+    @GetMapping
+    public List<Instrutor> listarTodos() {
+        return service.listarTodos();
+    }
 
-   @GetMapping("/{id}")
-   public ResponseEntity<Instrutor> buscarPorId(@PathVariable String id) {
-       return service.buscarPorId(id)
-               .map(ResponseEntity::ok)
-               .orElse(ResponseEntity.notFound().build());
-   }
+    @GetMapping("/{id}")
+    public ResponseEntity<Instrutor> buscarPorId(@PathVariable String id) {
+        return service.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
-   @PostMapping
-   public ResponseEntity<Instrutor> criar(@RequestBody Instrutor instrutor) {
-       Instrutor instrutorSalvo = service.salvar(instrutor);
+    @PostMapping
+    public ResponseEntity<Instrutor> criar(@Valid @RequestBody Instrutor instrutor) {
+        Instrutor instrutorSalvo = service.salvar(instrutor);
 
-       return ResponseEntity
-               .status(HttpStatus.CREATED)
-               .body(instrutorSalvo);
-   }
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(instrutorSalvo);
+    }
 
-   @PutMapping("/{id}")
-   public ResponseEntity<Instrutor> atualizar(
-           @PathVariable String id,
-           @RequestBody Instrutor instrutor) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Instrutor> atualizar(
+            @PathVariable String id,
+            @Valid @RequestBody Instrutor instrutor) {
 
-       if (service.buscarPorId(id).isEmpty()) {
-           return ResponseEntity.notFound().build();
-       }
+        if (service.buscarPorId(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
-       instrutor.setId(id);
+        instrutor.setId(id);
 
-       Instrutor instrutorAtualizado = service.salvar(instrutor);
+        Instrutor instrutorAtualizado = service.salvar(instrutor);
 
-       return ResponseEntity.ok(instrutorAtualizado);
-   }
+        return ResponseEntity.ok(instrutorAtualizado);
+    }
 
-   @DeleteMapping("/{id}")
-   public ResponseEntity<Void> excluir(@PathVariable String id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable String id) {
 
-       if (service.buscarPorId(id).isEmpty()) {
-           return ResponseEntity.notFound().build();
-       }
+        if (service.buscarPorId(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
-       service.excluir(id);
+        service.excluir(id);
 
-       return ResponseEntity.noContent().build();
-   }
+        return ResponseEntity.noContent().build();
+    }
 }

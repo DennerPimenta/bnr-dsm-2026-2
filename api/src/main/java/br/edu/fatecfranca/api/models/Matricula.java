@@ -1,9 +1,13 @@
 package br.edu.fatecfranca.api.models;
-
 import java.time.LocalDate;
 import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Document(collection = "matriculas")
 public class Matricula {
@@ -11,10 +15,19 @@ public class Matricula {
    @Id
    private String id;
 
+     @NotBlank(message = "O aluno é obrigatório.")
    private String alunoId;
+
+   @NotBlank(message = "A turma é obrigatória.")
    private String turmaId;
+
+   @NotNull(message = "A data da matrícula é obrigatória.")
    private LocalDate data;
+
+   @NotBlank(message = "A situação é obrigatória.")
    private String situacao;
+
+   @Valid
    private List<Nota> notas;
 
    // Construtor genérico

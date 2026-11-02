@@ -1,35 +1,44 @@
-
 package br.edu.fatecfranca.api.models;
-
 
 import java.util.List;
 
-
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 
 @Document(collection = "alunos")
 public class Aluno {
 
-
    @Id
    private String id;
 
-
+   @NotBlank(message = "O nome é obrigatório.")
    private String nome;
+
+   @NotBlank(message = "O CPF é obrigatório.")
+   @CPF(message = "O CPF informado é inválido.")
+
    private String cpf;
+
+   @NotBlank(message = "O telefone é obrigatório.")
    private String telefone;
+
+   
+
+   @NotBlank(message = "O e-mail é obrigatório.")
+   @Email(message = "O e-mail informado é inválido.") 
+
    private String email;
 
-
    private List<Endereco> enderecos;
-
 
    // Construtor genérico
    public Aluno() {
    }
-
 
    // Construtor personalizado completo, com todos os atributos
    public Aluno(
@@ -47,67 +56,51 @@ public class Aluno {
        this.enderecos = enderecos;
    }
 
-
    public String getId() {
-        return id;
+       return id;
    }
-
 
    public void setId(String id) {
-        this.id = id;
+       this.id = id;
    }
-
 
    public String getNome() {
-        return nome;
+       return nome;
    }
-
 
    public void setNome(String nome) {
-        this.nome = nome;
+       this.nome = nome;
    }
-
 
    public String getCpf() {
-        return cpf;
+       return cpf;
    }
-
 
    public void setCpf(String cpf) {
-        this.cpf = cpf;
+       this.cpf = cpf;
    }
-
 
    public String getTelefone() {
-        return telefone;
+       return telefone;
    }
-
 
    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+       this.telefone = telefone;
    }
-
 
    public String getEmail() {
-        return email;
+       return email;
    }
-
 
    public void setEmail(String email) {
-        this.email = email;
+       this.email = email;
    }
-
 
    public List<Endereco> getEnderecos() {
-        return enderecos;
+       return enderecos;
    }
-
 
    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
+       this.enderecos = enderecos;
    }
-
-
-   //*
 }
-
