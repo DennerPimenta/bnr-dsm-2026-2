@@ -14,6 +14,7 @@ public interface MatriculaRepository
     boolean existsByAlunoId(String alunoId);
 
     boolean existsByTurmaId(String turmaId);
+    List<Matricula> findByTurmaIdIn(List<String> turmaIds);
 
     // Regra: mesmo aluno não pode ter duas matrículas na mesma turma
     boolean existsByAlunoIdAndTurmaId(String alunoId, String turmaId);
